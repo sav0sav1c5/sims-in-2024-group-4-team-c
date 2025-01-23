@@ -1,0 +1,175 @@
+﻿<Page x:Class="BookingApp.View.GuideView.CreateTour"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.GuideView"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="430"
+      Title="CreateTour"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#7982b4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Command="{Binding BackCommand}" Height="30" Width="75" HorizontalAlignment="Left" Margin="0,10,0,0" Background="Transparent">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Source="/Resources/Images/back.png" />
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <TextBlock Text="Create Tour" FontWeight="Bold" FontSize="28" Margin="10" Grid.Row="1" HorizontalAlignment="Center" />
+
+        <Button Content="Auto" Command="{Binding CreateTourBasedOnStatisticsCommand}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Width="100" HorizontalAlignment="Right" Background="CadetBlue">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <ScrollViewer Grid.Row="3" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding TourName, Mode=TwoWay, ValidatesOnDataErrors=True}" Height="20" Grid.Row="0" Grid.Column="1" Margin="0,0,10,10" Width="200" Background="White"/>
+
+                <TextBlock Text="Country:" Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding AvailableCountries}" Grid.Row="1" Grid.Column="1" Margin="0,0,10,10" SelectedItem="{Binding Country, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="200" VerticalAlignment="Center" Background="#D8C782"/>
+
+                <TextBlock Text="City:" Grid.Row="2" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding AvailableCities}" Grid.Row="2" Grid.Column="1" Margin="0,0,10,10" SelectedItem="{Binding City, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="200" VerticalAlignment="Center" Background="#D8C782"/>
+
+                <TextBlock Text="Description:" Grid.Row="3" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Description, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="3" Grid.Column="1" Margin="0,0,10,10" Width="200" Height="100" Background="White"/>
+
+                <TextBlock Text="Language:" Grid.Row="4" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="LanguageComboBox" SelectedItem="{Binding Language, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="4" Grid.Column="1" Margin="0,0,10,10" Width="200" ItemsSource="{Binding Languages}" Background="#D8C782"/>
+
+                <TextBlock Text="Duration (hours):" Grid.Row="5" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Duration, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="5" Grid.Column="1" Margin="0,0,10,10" Width="50" Background="White"/>
+
+                <TextBlock Text="Max Tourist Number:" Grid.Row="6" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding MaxTouristNumber, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="6" Grid.Column="1" Margin="0,0,10,10" Width="50" Background="White" 
+                         PreviewMouseWheel="TextBox_PreviewMouseWheel" 
+                         PreviewKeyDown="TextBox_PreviewKeyDown"/>
+
+                <TextBlock Text="Date and Time:" Grid.Row="7" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <DatePicker SelectedDate="{Binding DateAndTime, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="7" Grid.Column="1" Margin="0,0,0,10" Width="200" VerticalAlignment="Center" Background="#7982b4"/>
+
+                <TextBlock Text="Checkpoints:" Grid.Row="8" Grid.Column="0" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <ListBox x:Name="CheckpointsListBox" SelectionMode="Multiple" Grid.Row="8" Grid.Column="1" Margin="0,0,0,10" Width="200" ItemsSource="{Binding SelectedCheckpoints}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding AddSelectedCheckpointCommand}" />
+                    </ListBox.InputBindings>
+                </ListBox>
+
+                <!-- Add Photo Section -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 10 10">
+                    <Button Content="Add Image" Command="{Binding AddImageCommand}" Grid.Row="10" Grid.Column="1" Margin="0,0,0,0" Width="100" Height="25" HorizontalAlignment="Center" Background="CadetBlue">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" 
+                                    CornerRadius="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                <ListBox ItemsSource="{Binding Photos}" Grid.Row="13" Grid.ColumnSpan="2" Height="100" Width="200" Margin="0,0,0,10">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding}" Height="50" Width="50" Margin="5"/>
+                                <Button Content="Remove" Command="{Binding DataContext.RemoveImageCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Button Content="Create" Command="{Binding CreateTourCommand}" Grid.Row="14" Grid.ColumnSpan="2" Margin="0,10,0,0" Width="100" Height="30" HorizontalAlignment="Center" Background="CadetBlue">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

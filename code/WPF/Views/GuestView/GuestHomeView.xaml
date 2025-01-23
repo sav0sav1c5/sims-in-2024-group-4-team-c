@@ -1,0 +1,89 @@
+﻿<Window x:Class="BookingApp.View.GuestView.GuestHomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View.GuestView"
+        mc:Ignorable="d"
+        WindowStartupLocation="Manual" 
+        Left="20" Top="20"
+        ResizeMode="NoResize"
+        Title="GuestHomeView" Height="768" Width="1024">
+    <Window.Resources>
+        <Style TargetType="Button" >
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <!--<Setter Property="Padding" Value="5"/>-->
+            <!--<Setter Property="Margin" Value="0,0,0,0"/>-->
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Left" /> 
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="50" />
+        </Style>
+    </Window.Resources>
+    
+    
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Left" >
+            <StackPanel Background="LightBlue">
+
+                <Button DockPanel.Dock="Top" Click="ViewGuestMyProfile" FontWeight="Bold" 
+>
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/profile.png" />
+                        <TextBlock>My profile</TextBlock>
+                    </WrapPanel >
+                </Button>
+                <Button DockPanel.Dock="Top" Click="ViewGuestBookings" FontWeight="Bold" >
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/bookmarkBookTransparent.png" />
+                        <TextBlock>My bookings</TextBlock>
+                    </WrapPanel >
+                </Button>
+                <Button DockPanel.Dock="Top" Click="ViewGuestSearchAccommodation" FontWeight="Bold" >
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/magnifyingGlass.png" />
+                        <TextBlock>Search<LineBreak/>Accommodations</TextBlock>
+                    </WrapPanel >
+                </Button>
+                <Button DockPanel.Dock="Top" Click="ViewGuestSearchForums" FontWeight="Bold" >
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/searchLocation.png" />
+                        <TextBlock>Search<LineBreak/>Forums</TextBlock>
+                    </WrapPanel>
+                </Button>
+                <Button DockPanel.Dock="Top" Click="ViewGuestReservationModificationRequestsPage"  FontWeight="Bold" >
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/writeToFile.png" />
+                        <TextBlock>My booking<LineBreak/>modification requests</TextBlock>
+                    </WrapPanel >
+                </Button>
+                <Button DockPanel.Dock="Top" Click="ViewGuestReservationModificationRequestsPage"  FontWeight="Bold" >
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/downloadPDF.png" />
+                        <TextBlock >Review report</TextBlock>
+                    </WrapPanel >
+                </Button>
+                <Button DockPanel.Dock="Top" Click="ViewGuestReservationModificationRequestsPage"  FontWeight="Bold" >
+                    <WrapPanel >
+                        <Image Source="/Resources/Images/QuestionMark.png" />
+                        <TextBlock>Help</TextBlock>
+                    </WrapPanel >
+                </Button>
+                <!--<Button DockPanel.Dock="Top" FontWeight="Bold" Width="277">Browse forums</Button>-->
+            </StackPanel>
+        </DockPanel>
+        
+        <DockPanel DockPanel.Dock="Top">
+            <!--<Frame Name="GuestMyProfile" Source="GuestMyProfile.xaml" />-->
+            <Frame Name="GuestWorkFrame" NavigationUIVisibility="Hidden"/>
+
+        </DockPanel>
+    </DockPanel>
+
+</Window>

@@ -1,0 +1,106 @@
+﻿<Page x:Class="BookingApp.WPF.Views.GuestView.GuestViewReservationModificationRequestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.Views.GuestView"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="GuestViewReservationModificationRequestsPage">
+
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="LabelTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="5,0,0,5" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="FieldTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="FieldTextBox">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="Border" >
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+        <Style TargetType="Button" >
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="10,10,10,10" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TitleTextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Requested reservation modifications" Style="{StaticResource TitleTextBlock}" />
+        <Border Grid.Row="1" >
+
+            <ScrollViewer >
+                <ItemsControl ItemsSource="{Binding FoundReservationModificationRequestsDTO}" Background="White" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10,10,10,10" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding AccommodationImage}"  Grid.Row="0" Grid.Column="0" Width="100" Height="100"/>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3">
+
+                                            <TextBlock Text="{Binding AccommodationName}"  Style="{StaticResource LabelTextBlock}"/>
+                                        <WrapPanel>
+                                            <TextBlock Text="{Binding AccommodationCity}" Style="{StaticResource LabelTextBlock}" />
+                                            <TextBlock Text=","  Style="{StaticResource LabelTextBlock}" />
+                                            <TextBlock Text="{Binding AccommodationCountry}" Style="{StaticResource LabelTextBlock}" />
+                                        </WrapPanel>
+                                            <TextBlock Text="{Binding AccommodationType}" Style="{StaticResource LabelTextBlock}" />
+                                            <TextBlock Text="{Binding RequestState}" Style="{StaticResource LabelTextBlock}" />
+                                            <WrapPanel>
+                                                <TextBlock Text="{Binding NewStartDateString}" Style="{StaticResource LabelTextBlock}" />
+                                                <TextBlock Text=" - " Style="{StaticResource LabelTextBlock}" />
+                                                <TextBlock Text="{Binding NewEndDateString}" Style="{StaticResource LabelTextBlock}" />
+                                            </WrapPanel>
+                                        </StackPanel>
+
+                                    <Button 
+                                        Command="{Binding DataContext.ViewModificationRequestCMD, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" 
+                                        CommandParameter="{Binding}"
+                                        Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" 
+                                        Width="120" Height="50" FontSize="16" >
+                                        View
+                                    </Button>
+
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Page>

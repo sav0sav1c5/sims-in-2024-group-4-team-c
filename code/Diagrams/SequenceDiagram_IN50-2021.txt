@@ -1,0 +1,58 @@
+@startuml
+title Load new tours for tour notifications
+
+actor Tourist
+participant "NotificationsViewModel" as NotificationsViewModel
+participant "TourRequestService" as TourRequestService
+participant "TourService" as TourService
+participant "LocationService" as LocationService
+participant "TourReservation" as TourReservationService
+
+Tourist -> NotificationsViewModel: LoadInformations()
+activate NotificationsViewModel
+
+NotificationsViewModel --> TourRequestService: GetDeclinedTourRequestsByTouristId(LoggedTourist.Id)
+activate TourRequestService
+TourRequestService --> NotificationsViewModel: TourRequests
+deactivate TourRequestService
+
+NotificationsViewModel -> TourService: GetAllTours()
+activate TourService
+TourService --> NotificationsViewModel: Tours
+deactivate TourService
+
+loop for each tour in Tours
+    NotificationsViewModel -> LocationService: GetLocationById(tour.LocationId)
+    activate LocationService
+    LocationService --> NotificationsViewModel: Location
+    deactivate LocationService
+end
+
+NotificationsViewModel --> Tourist: Lista turistinih odbijenih zahteva i svih tura sa lokacijama
+
+Tourist -> NotificationsViewModel: LoadNewTours()
+activate NotificationsViewModel
+
+loop for each tour in Tours
+    loop for each request in TourRequests
+        NotificationsViewModel -> TourReservationService: FindFirstReservation(tour.Id);
+        activate TourReservationService
+        TourReservationService -> NotificationsViewModel: firstReservation
+        deactivate TourReservationService
+        alt firstReservation != null && firstReservation.DateAndTime.Date > request.EndDate.AddHours(-48)
+            alt (request.Language != null && tour.Language != null && request.Language.Equals(tour.Language))
+                NotificationsViewModel -> NotificationsViewModel: NewTours.Add(tour);
+                NotificationsViewModel -> NotificationsViewModel: Break for each request in TourRequests
+            end
+            alt (request.City != null && request.Country != null &&\n tour.Location != null && request.City.Equals(tour.Location.City) && request.Country.Equals(tour.Location.Country))
+                NotificationsViewModel -> NotificationsViewModel: NewTours.Add(tour);
+                NotificationsViewModel -> NotificationsViewModel: Break for each request in TourRequests
+            end
+        end
+    end
+end
+
+NotificationsViewModel --> Tourist: Lista tura koje su kreirane posle 
+deactivate NotificationsViewModel
+
+@enduml

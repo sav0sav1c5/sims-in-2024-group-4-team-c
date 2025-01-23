@@ -1,0 +1,441 @@
+﻿<Page x:Class="BookingApp.WPF.Views.GuestView.GuestReviewAccommodationReservationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.Views.GuestView" xmlns:visualbasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="800"
+      Title="GuestReviewAccommodationReservationPage"
+      FocusManager.FocusedElement="{Binding ElementName=NewImagePathTextBox}">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="LabelTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="5,0,0,5" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="FieldTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="BorderHeaderTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="FieldTextBox">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="Border" >
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="5,15,10,0" />
+        </Style>
+        <Style TargetType="Button" >
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="10,10,10,10" />
+        </Style>
+        <Style TargetType="RadioButton" >
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,10,5,10" />
+        </Style>
+        <Style TargetType="Button" x:Key="ImageButton" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TitleTextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+    </Page.Resources>
+
+
+
+    <ScrollViewer>
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Style="{StaticResource TitleTextBlock}" Text="Reservation review" 
+               Grid.Row="0" />
+
+
+            <TextBlock Grid.Row="0" 
+               Style="{StaticResource BorderHeaderTextBlock}"
+               Text="Accomodation info" Margin="10,25,0,0" 
+               />
+            <Border Grid.Row="1" Margin="5,0,5,0" >
+
+                <Grid  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <WrapPanel  Grid.Column="0" Margin="10,10,10,10">
+
+                        <Button Width="50" Height="50" Style="{StaticResource ImageButton}"
+                            Command="{Binding ShowPreviousAccommodationImageCMD}" 
+                            CommandParameter="{Binding ElementName=AccommodationImageGallery}">
+                            <Image Source="/Resources/Images/ArrowLeft.png" Width="50" Height="50"/>
+                        </Button>
+                        <Image x:Name="AccommodationImageGallery" 
+                            Width="200" Height="180"/>
+                        <Button Width="50" Height="50" Style="{StaticResource ImageButton}"
+                            Command="{Binding ShowNextAccommodationImageCMD}" 
+                            CommandParameter="{Binding ElementName=AccommodationImageGallery}">
+                            <Image Source="/Resources/Images/ArrowRight.png" Width="50" Height="50"/>
+                        </Button>
+                    </WrapPanel>
+
+
+                    <Grid Grid.Column="1" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Name:"  Style="{StaticResource LabelTextBlock}" 
+                       Grid.Column="0" Grid.Row="0"
+                           Margin="5,5,5,5"
+                       />
+                        <TextBlock Text="{Binding AccommodationReservationDTO.AccommodationName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                       Style="{StaticResource FieldTextBlock}"
+                       Grid.Column="1" Grid.Row="0"
+                           Margin="5,5,5,5"
+                       />
+
+                        <TextBlock Text="Country:" Style="{StaticResource LabelTextBlock}" 
+                       Grid.Column="0" Grid.Row="1"
+                           Margin="5,5,5,5"
+                       />
+                        <TextBlock Text="{Binding AccommodationReservationDTO.AccommodationCountry, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                       Style="{StaticResource FieldTextBlock}"
+                       Grid.Column="1" Grid.Row="1"
+                           Margin="5,5,5,5"
+                       />
+
+                        <TextBlock Text="City:" Style="{StaticResource LabelTextBlock}" 
+                       Grid.Column="0" Grid.Row="2"
+                           Margin="5,5,5,5"
+                       />
+                        <TextBlock Text="{Binding AccommodationReservationDTO.AccommodationCity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                       Style="{StaticResource FieldTextBlock}"
+                        Grid.Column="1" Grid.Row="2"
+                           Margin="5,5,5,5"
+                       />
+
+                        <TextBlock Text="Owner:" Style="{StaticResource LabelTextBlock}" 
+                       Grid.Column="0" Grid.Row="3"
+                           Margin="5,5,5,5"
+                       />
+                        <TextBlock Text="{Binding AccommodationReservationDTO.OwnerName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                       Style="{StaticResource FieldTextBlock}" 
+                       Grid.Column="1" Grid.Row="3"
+                           Margin="5,5,5,5"
+                       />
+
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="1"
+                Style="{StaticResource BorderHeaderTextBlock}"
+                Text="Reservation info" Margin="10,0,0,0" 
+                />
+            <Border Grid.Row="2" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Check-in date:" 
+                        />
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                        Style="{StaticResource FieldTextBlock}"
+                        Text="{Binding AccommodationReservationDTO.StartDateString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        />
+
+                    <TextBlock Grid.Row="0" Grid.Column="2"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Check-out date:" 
+                        />
+                    <TextBlock Grid.Row="0" Grid.Column="3"
+                        Style="{StaticResource FieldTextBlock}"
+                        Text="{Binding AccommodationReservationDTO.EndDateString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Number of guests:" 
+                        />
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                        Style="{StaticResource FieldTextBlock}"
+                        Text="{Binding AccommodationReservationDTO.NumberOfGuests, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        />
+
+                    <TextBlock Grid.Row="1" Grid.Column="2"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Stay length in days:" 
+                        />
+                    <TextBlock Grid.Row="1" Grid.Column="3"
+                        Style="{StaticResource FieldTextBlock}"
+                        Text="{Binding AccommodationReservationDTO.StayLength, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        />
+                </Grid>
+            </Border>
+
+
+            <TextBlock Grid.Row="3" 
+                Style="{StaticResource BorderHeaderTextBlock}"
+                Text="Rating" Margin="10,0,0,0" 
+                />
+            <Border Grid.Row="3" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" 
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Center"
+                        Text="Very bad" 
+                        />
+                    <TextBlock Grid.Row="0" Grid.Column="3" 
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Center"
+                        Text="Average" 
+                        />
+                    <TextBlock Grid.Row="0" Grid.Column="5" 
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Center"
+                        Text="Excellent" 
+                        />
+
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Cleanliness:" 
+                        />
+                    <RadioButton Name="CleanlinessRatingRadioButton1"  GroupName="CleanlinessRatingRadioButtons" IsChecked="{Binding CleanlinessRatings[0], Mode=TwoWay}" Grid.Row="1" Grid.Column="1"/>
+                    <RadioButton Name="CleanlinessRatingRadioButton2"  GroupName="CleanlinessRatingRadioButtons" IsChecked="{Binding CleanlinessRatings[1], Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
+                    <RadioButton Name="CleanlinessRatingRadioButton3"  GroupName="CleanlinessRatingRadioButtons" IsChecked="{Binding CleanlinessRatings[2], Mode=TwoWay}" Grid.Row="1" Grid.Column="3"/>
+                    <RadioButton Name="CleanlinessRatingRadioButton4"  GroupName="CleanlinessRatingRadioButtons" IsChecked="{Binding CleanlinessRatings[3], Mode=TwoWay}" Grid.Row="1" Grid.Column="4"/>
+                    <RadioButton Name="CleanlinessRatingRadioButton5"  GroupName="CleanlinessRatingRadioButtons" IsChecked="{Binding CleanlinessRatings[4], Mode=TwoWay}" Grid.Row="1" Grid.Column="5"/>
+
+
+                    <TextBlock Grid.Row="2" Grid.Column="0"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Owners correctness:" 
+                        />
+                    <RadioButton Name="CorrectnessRatingRadioButton1"  GroupName="CorrectnessRatingRadioButtons" IsChecked="{Binding CorrectnessRatings[0], Mode=TwoWay}" Grid.Row="2" Grid.Column="1"/>
+                    <RadioButton Name="CorrectnessRatingRadioButton2"  GroupName="CorrectnessRatingRadioButtons" IsChecked="{Binding CorrectnessRatings[1], Mode=TwoWay}" Grid.Row="2" Grid.Column="2"/>
+                    <RadioButton Name="CorrectnessRatingRadioButton3"  GroupName="CorrectnessRatingRadioButtons" IsChecked="{Binding CorrectnessRatings[2], Mode=TwoWay}" Grid.Row="2" Grid.Column="3"/>
+                    <RadioButton Name="CorrectnessRatingRadioButton4"  GroupName="CorrectnessRatingRadioButtons" IsChecked="{Binding CorrectnessRatings[3], Mode=TwoWay}" Grid.Row="2" Grid.Column="4"/>
+                    <RadioButton Name="CorrectnessRatingRadioButton5"  GroupName="CorrectnessRatingRadioButtons" IsChecked="{Binding CorrectnessRatings[4], Mode=TwoWay}" Grid.Row="2" Grid.Column="5"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                        Style="{StaticResource LabelTextBlock}"
+                        Text="Does the accommodation need renovation?" 
+                        />
+                    <RadioButton Name="IsInNeedOfRenovationRadioButtonYES"  GroupName="IsInNeedOfRenovationRadioButtons" Content="YES" IsChecked="{Binding IsInNeedOfRenovations[0], Mode=TwoWay}" Grid.Row="3" Grid.Column="4"/>
+                    <RadioButton Name="IsInNeedOfRenovationRadioButtonNO"  GroupName="IsInNeedOfRenovationRadioButtons" Content="NO" IsChecked="{Binding IsInNeedOfRenovations[1], Mode=TwoWay}" Grid.Row="3" Grid.Column="5"/>
+                </Grid>
+            </Border>
+
+
+            <TextBlock Grid.Row="4" 
+                Style="{StaticResource BorderHeaderTextBlock}"
+                Text="Questionaire" Margin="10,0,0,0" 
+                />
+            <Border Grid.Row="4" >
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3"
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Center" FontWeight="Bold"
+                        Text="What is the necessity for renovating the accommodation on a scale from 1 to 5?" 
+                        />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2"
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Left"
+                        Text="1.Everything works but some things could be renovated:" 
+                        />
+                    <TextBlock Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Left"
+                        Text="2.Few things need to be renovated:" 
+                        />
+                    <TextBlock Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2"
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Left"
+                        Text="3.Handful of things need renovation but it's managable" 
+                        />
+                    <TextBlock Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="2"
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Left"
+                        Text="4.A lot of things need renovation or are in need of one" 
+                        />
+                    <TextBlock Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="2"
+                        Style="{StaticResource LabelTextBlock}" HorizontalAlignment="Left"
+                        Text="5.Uninhabitable" 
+                        />
+                    <RadioButton Name="RenovationNeedRadioButton1"  GroupName="RenovationNeedRadioButtons" IsChecked="{Binding RenovationNeedRatings[0], Mode=TwoWay}" Grid.Row="1" Grid.Column="2"/>
+                    <RadioButton Name="RenovationNeedRadioButton2"  GroupName="RenovationNeedRadioButtons" IsChecked="{Binding RenovationNeedRatings[1], Mode=TwoWay}" Grid.Row="2" Grid.Column="2"/>
+                    <RadioButton Name="RenovationNeedRadioButton3"  GroupName="RenovationNeedRadioButtons" IsChecked="{Binding RenovationNeedRatings[2], Mode=TwoWay}" Grid.Row="3" Grid.Column="2"/>
+                    <RadioButton Name="RenovationNeedRadioButton4"  GroupName="RenovationNeedRadioButtons" IsChecked="{Binding RenovationNeedRatings[3], Mode=TwoWay}" Grid.Row="4" Grid.Column="2"/>
+                    <RadioButton Name="RenovationNeedRadioButton5"  GroupName="RenovationNeedRadioButtons" IsChecked="{Binding RenovationNeedRatings[4], Mode=TwoWay}" Grid.Row="5" Grid.Column="2"/>
+
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="5" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0"
+                        Style="{StaticResource LabelTextBlock}" 
+                        Text="Comment:" 
+                        />
+                    <TextBox Text="{Binding Path=GuestReviewComment, Mode=TwoWay}" Grid.Row="0" Grid.Column="1"
+                             Style="{StaticResource FieldTextBox}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                        Style="{StaticResource LabelTextBlock}" 
+                        Text="Full path to image:" 
+                        />
+                    <TextBox Name="NewImagePathTextBox" Grid.Row="1" Grid.Column="1"
+                             Text="{Binding Path=NewImagePath, Mode=TwoWay}" 
+                             Style="{StaticResource FieldTextBox}"
+                             LostKeyboardFocus="RefreshPreviewReviewImage"
+                             >
+                        <!--<Interaction.Triggers>
+                            <EventTrigger EventName="LostFocus">
+                                <InvokeCommandAction Command="{Binding NewImagePathTextBox_LostFocusCMD}"
+                                                       CommandParameter="DataSetServerLostFocus"/>
+                            </EventTrigger>
+                        </Interaction.Triggers>-->
+
+                    </TextBox>
+
+                    <Image Width="50" Height="50" Name="PreviewReviewImage" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Button  Command="{Binding UploadImageCMD}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                         CommandParameter="{Binding ElementName=UploadedImageGallery}"
+                         Content="Add this image to review" />
+                </Grid>
+
+
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Button Width="50" Height="50" Style="{StaticResource ImageButton}"
+                        Command="{Binding ViewPreviousImageCMD}" Grid.Row="0" Grid.Column="0"
+                        CommandParameter="{Binding ElementName=UploadedImageGallery}">
+                        <Image Source="/Resources/Images/ArrowLeft.png" Width="50" Height="50"/>
+                    </Button>
+                    <Image  Width="350" Height="150" Name="UploadedImageGallery" Grid.Row="0" Grid.Column="1"/>
+                    <Button Width="50" Height="50" Style="{StaticResource ImageButton}"
+                        Command="{Binding ViewNextImageCMD}" Grid.Row="0" Grid.Column="2"
+                        CommandParameter="{Binding ElementName=UploadedImageGallery}">
+                        <Image Source="/Resources/Images/ArrowRight.png" Width="50" Height="50"/>
+                    </Button>
+
+                    <Button Command="{Binding RemoveUploadedImageCMD}" Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3"
+                        CommandParameter="{Binding ElementName=UploadedImageGallery}"
+                        Content="Remove this image" />
+
+                </Grid>
+                
+                <Button Command="{Binding PostReviewCMD}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                    CommandParameter="{Binding ElementName=UploadedImageGallery}"
+                    Content="Post review" />
+                
+
+            </Grid>
+
+
+        </Grid>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,390 @@
+﻿<Page x:Class="BookingApp.View.OwnerView.RateView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.OwnerView"
+      xmlns:vm="clr-namespace:BookingApp.WPF.ViewModels.OwnerViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="RateView">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="StarToggleButton" TargetType="{x:Type ToggleButton}">
+            <Canvas
+                    Width="50"
+                    Height="30"
+                    Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                <Path
+                        x:Name="ButtonPath"
+                        Width="20"
+                        Height="20"
+                        Canvas.Left="17.416"
+                        Canvas.Top="18"
+                        Data="F1 M 17.416,32.25L 32.910,32.25L 38,18L 43.089,32.25L 58.583,32.25L 45.679,41.494L 51.458,56L 38,48.083L 26.125,56L 30.597,41.710L 17.416,32.25 Z "
+                        Fill="Transparent"
+                        Stroke="Black"
+                        StrokeThickness="2"
+                        Stretch="Fill"/>
+            </Canvas>
+            <!-- When checked, fill with Yellow -->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter TargetName="ButtonPath" Property="Fill" Value="Yellow"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="StarRadioButtonContainer" TargetType="StackPanel">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton1}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton2}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton3}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="Yellow"/>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton1}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton2}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton3}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton4}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="Yellow"/>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton1}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton2}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton3}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton4}" Value="True"/>
+                        <Condition Binding="{Binding IsChecked, ElementName=StarRadioButton5}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="Yellow"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Page.Resources>
+<!--
+    <Grid Background="LightBlue">
+        <StackPanel Margin="10">
+            <TextBlock Text="Accommodation Name:" FontSize="16" HorizontalAlignment="Right" Margin="0,0,192,0"/>
+            <TextBox x:Name="AccommodationNameTextBox" Text="{Binding Path=AccommodationName}" IsReadOnly="True" Width="360" FontSize="16" Height="30" HorizontalAlignment="Right"/>
+            <TextBlock Text="Guest Name:" Margin="0,0,0,0"/>
+            <TextBox x:Name="GuestNameTextBox" Text="{Binding Path=GuestName}" IsReadOnly="True"/>
+            
+                <StackPanel>
+                    <TextBlock Text="Cleanliness:"/>
+                    <StackPanel Orientation="Horizontal" Margin="-15,-15,0,0"  Style="{StaticResource StarRadioButtonContainer}">
+                        <RadioButton x:Name="StarRadioButton1" Content="1"  Tag="1"  Template="{DynamicResource StarToggleButton}" />
+                        <RadioButton x:Name="StarRadioButton2" Content="2"  Tag="2" Template="{DynamicResource StarToggleButton}" />
+                        <RadioButton x:Name="StarRadioButton3" Content="3"  Tag="3" Template="{DynamicResource StarToggleButton}" />
+                        <RadioButton x:Name="StarRadioButton4" Content="4"  Tag="4" Template="{DynamicResource StarToggleButton}" />
+                        <RadioButton x:Name="StarRadioButton5" Content="5"  Tag="5" Template="{DynamicResource StarToggleButton}" />
+                    </StackPanel>
+
+                    <TextBlock Text="Rule Compliance:" Margin="0,12,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="-15,-15,0,0">
+                        <RadioButton Content="1"  Tag="1" Template="{DynamicResource StarToggleButton}"/>
+                        <RadioButton Content="2"  Tag="2" Template="{DynamicResource StarToggleButton}"/>
+                        <RadioButton Content="3"  Tag="3" Template="{DynamicResource StarToggleButton}"/>
+                        <RadioButton Content="4"  Tag="4" Template="{DynamicResource StarToggleButton}"/>
+                        <RadioButton Content="5"  Tag="5" Template="{DynamicResource StarToggleButton}"/>
+                    </StackPanel>
+                </StackPanel>
+           
+
+            <Label Content="Comment:"/>
+            <TextBox x:Name="CommentTextBox" Text="{Binding CommentText}"/>
+
+            <Button Content="Save Rating" Command="{Binding SaveGuestRatingCommand}"/>
+
+
+        </StackPanel>
+        
+    </Grid>
+    -->
+
+    <Grid Background="LightBlue" Grid.Row="2" Margin="0,-50,0,-60">
+        <Label Content="Rate guest" HorizontalAlignment="Center" Margin="0,-50,0,0"   FontSize="36"  FontFamily="Calibri" Foreground="#FF333230"/>
+        
+            
+                
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="175,40,175,150" CornerRadius="25,25,25,25" Background="#FF97C2D0" Opacity="1">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="600"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label  Content="Accommodation:" Grid.Row="1" Margin="0,0,48,0" FontSize="22" HorizontalAlignment="Right" ></Label>
+                    <TextBox Text="{Binding AccommodationName}" TextAlignment="Center"  FontSize="22" Margin="0,30,-30,5" Grid.Row="1" Height="35" Width="250" HorizontalAlignment="Right" IsReadOnly="True" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#D9D9D9"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5">
+                                                <ScrollViewer x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#AAAAAA"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="#999999"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Label Content="Name:" Grid.Row="1" FontSize="22" Margin="30,0,0,0"></Label>
+                    <TextBox Text="{Binding GuestName}"  TextAlignment="Center" FontSize="22" Margin="35,25,0,0" Grid.Row="1" Height="35" Width="200" HorizontalAlignment="Left" IsReadOnly="True" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#D9D9D9"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5">
+                                                <ScrollViewer x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#AAAAAA"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="#999999"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Label Content="Start date:" Grid.Row="2" FontSize="22" Margin="30,0,0,0"></Label>
+                    <TextBox Text="{Binding StartDate}" TextAlignment="Center"  FontSize="22" Margin="35,25,0,0" Grid.Row="2" Height="35" Width="150" HorizontalAlignment="Left" IsReadOnly="True" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#D9D9D9"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5">
+                                                <ScrollViewer x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#AAAAAA"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="#999999"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Label  Content="End date:" Grid.Row="2" Margin="0,0,120,0" FontSize="22" HorizontalAlignment="Right" ></Label>
+                    <TextBox Text="{Binding EndDate}" TextAlignment="Center"  FontSize="22" Margin="0,30,68,5" Grid.Row="2" Height="35" Width="150" HorizontalAlignment="Right" IsReadOnly="True" >
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#D9D9D9"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="5">
+                                                <ScrollViewer x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#AAAAAA"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="#999999"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Grid Grid.Row="3">
+                                        <StackPanel>
+                                            <TextBlock Text="Cleanliness:" FontSize="22" Margin="35,10,0,0" HorizontalAlignment="Left"/>
+                                            <StackPanel Orientation="Horizontal" Margin="250,-52,0,0"  Style="{StaticResource StarRadioButtonContainer}">
+                                                <RadioButton x:Name="StarRadioButton1" Content="1"  Tag="1"  Template="{DynamicResource StarToggleButton}" />
+                                                <RadioButton x:Name="StarRadioButton2" Content="2"  Tag="2" Template="{DynamicResource StarToggleButton}" />
+                                                <RadioButton x:Name="StarRadioButton3" Content="3"  Tag="3" Template="{DynamicResource StarToggleButton}" />
+                                                <RadioButton x:Name="StarRadioButton4" Content="4"  Tag="4" Template="{DynamicResource StarToggleButton}" />
+                                                <RadioButton x:Name="StarRadioButton5" Content="5"  Tag="5" Template="{DynamicResource StarToggleButton}" />
+                                            </StackPanel>
+
+                                            <TextBlock Text="Following the rules:" FontSize="22" Margin="35,10,0,0"/>
+                                            <StackPanel Orientation="Horizontal" Margin="250,-52,0,0">
+                                                <RadioButton Content="1"  Tag="1" Template="{DynamicResource StarToggleButton}"/>
+                                                <RadioButton Content="2"  Tag="2" Template="{DynamicResource StarToggleButton}"/>
+                                                <RadioButton Content="3"  Tag="3" Template="{DynamicResource StarToggleButton}"/>
+                                                <RadioButton Content="4"  Tag="4" Template="{DynamicResource StarToggleButton}"/>
+                                                <RadioButton Content="5"  Tag="5" Template="{DynamicResource StarToggleButton}"/>
+                                            </StackPanel>
+                                    </StackPanel>
+                                    </Grid>
+                                    <Label Content="Comment:" FontSize="22" Margin="30,0,0,0" Grid.Row="4"/>
+                                    <TextBox x:Name="CommentTextBox" FontSize="16"  Grid.Row="4" Width="550" Height="60" Margin="22,0,0,-90" Text="{Binding CommentText}">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#D9D9D9"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                                <Setter Property="Padding" Value="2"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5">
+                                                <ScrollViewer x:Name="PART_ContentHost" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="#AAAAAA"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground" Value="#999999"/>
+
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="BorderBrush" Value="Red"/>
+                                        <Setter Property="ToolTip" Value="Polje je obavezno."/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                        
+                                    </TextBox>
+
+                    <Button Content="Rate" Grid.Row="5" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding SaveGuestRatingCommand}" Margin="0,70,0,0" Width="100" Height="35" HorizontalAlignment="Center" >
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#0078D7"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="#005A9E"/>
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontFamily" Value="Segoe UI"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="{TemplateBinding BorderThickness}"
+CornerRadius="5">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#005A9E"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="#004C87"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#B8B8B8"/>
+                                        <Setter Property="Foreground" Value="#666666"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </Grid>
+
+                            </Grid>
+
+
+
+
+
+                        </Border>
+                    
+        
+    </Grid>
+</Page>

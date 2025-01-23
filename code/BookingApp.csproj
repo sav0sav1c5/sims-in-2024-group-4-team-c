@@ -1,0 +1,114 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\add.png" />
+    <None Remove="Resources\Images\ArrowLeft.png" />
+    <None Remove="Resources\Images\ArrowRight.png" />
+    <None Remove="Resources\Images\attention.png" />
+    <None Remove="Resources\Images\back.png" />
+    <None Remove="Resources\Images\blackStar.png" />
+    <None Remove="Resources\Images\bookmarkBookTransparent.png" />
+    <None Remove="Resources\Images\complexMail.png" />
+    <None Remove="Resources\Images\delete.png" />
+    <None Remove="Resources\Images\downloadPDF.png" />
+    <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\flag.jpg" />
+    <None Remove="Resources\Images\flag.png" />
+    <None Remove="Resources\Images\goldStar.png" />
+    <None Remove="Resources\Images\house.jpg" />
+    <None Remove="Resources\Images\house.png" />
+    <None Remove="Resources\Images\house2.jpg" />
+    <None Remove="Resources\Images\magnifyingGlass.png" />
+    <None Remove="Resources\Images\mail.png" />
+    <None Remove="Resources\Images\plus.png" />
+    <None Remove="Resources\Images\profile.png" />
+    <None Remove="Resources\Images\QuestionMark.png" />
+    <None Remove="Resources\Images\quit.png" />
+    <None Remove="Resources\Images\requestStatistics.png" />
+    <None Remove="Resources\Images\review.png" />
+    <None Remove="Resources\Images\searchLocation.jpg" />
+    <None Remove="Resources\Images\searchLocation.png" />
+    <None Remove="Resources\Images\statistics.png" />
+    <None Remove="Resources\Images\tmp.png" />
+    <None Remove="Resources\Images\User-Profile.png" />
+    <None Remove="Resources\Images\view.png" />
+    <None Remove="Resources\Images\writeToFile.png" />
+    <None Remove="Resources\Images\x.png" />
+    <None Remove="Resources\TutorialVideos\Complex_tour_request.mp4" />
+    <None Remove="Resources\TutorialVideos\Standard_tour_request.mp4" />
+    <None Remove="Resources\TutorialVideos\Tour_reservation.mp4" />
+    <None Remove="Resources\TutorialVideos\Voucher_use.mp4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Images\add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\view.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PDFsharp" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\ArrowLeft.png" />
+    <Resource Include="Resources\Images\ArrowRight.png" />
+    <Resource Include="Resources\Images\attention.png" />
+    <Resource Include="Resources\Images\back.png" />
+    <Resource Include="Resources\Images\blackStar.png" />
+    <Resource Include="Resources\Images\bookmarkBookTransparent.png" />
+    <Resource Include="Resources\Images\complexMail.png" />
+    <Resource Include="Resources\Images\downloadPDF.png" />
+    <Resource Include="Resources\Images\flag.jpg" />
+    <Resource Include="Resources\Images\flag.png" />
+    <Resource Include="Resources\Images\goldStar.png" />
+    <Resource Include="Resources\Images\house.jpg" />
+    <Resource Include="Resources\Images\house.png" />
+    <Resource Include="Resources\Images\house2.jpg" />
+    <Resource Include="Resources\Images\magnifyingGlass.png" />
+    <Resource Include="Resources\Images\mail.png" />
+    <Resource Include="Resources\Images\plus.png" />
+    <Resource Include="Resources\Images\profile.png" />
+    <Resource Include="Resources\Images\QuestionMark.png" />
+    <Resource Include="Resources\Images\quit.png" />
+    <Resource Include="Resources\Images\requestStatistics.png" />
+    <Resource Include="Resources\Images\review.png" />
+    <Resource Include="Resources\Images\searchLocation.png" />
+    <Resource Include="Resources\Images\statistics.png" />
+    <Resource Include="Resources\Images\User-Profile.png" />
+    <Resource Include="Resources\Images\writeToFile.png" />
+    <Resource Include="Resources\Images\x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

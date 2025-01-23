@@ -1,0 +1,119 @@
+﻿<Page x:Class="BookingApp.WPF.Views.GuideView.TourReviewsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.Views.GuideView"
+      xmlns:viewModel="clr-namespace:BookingApp.WPF.ViewModels.GuideViewModel" 
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="430"
+      Title="TourReviewsView"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Page.Resources>
+
+    <Grid Background="#7982b4">
+        <Grid.Resources>
+            <!-- Define a Style for the Border based on the IsValid property -->
+            <Style x:Key="ReviewBorderStyle" TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsValid}" Value="False">
+                        <Setter Property="Background" Value="Red"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Command="{Binding BackCommand}" Height="30" Width="75" HorizontalAlignment="Left" Margin="0,10,0,0" Background="Transparent">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Source="/Resources/Images/back.png" />
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- Title -->
+        <TextBlock Text="Tour Reviews" FontWeight="Bold" FontSize="28" Margin="10" Grid.Row="1" HorizontalAlignment="Center" />
+
+        <!-- List of tour reviews -->
+        <ListView ItemsSource="{Binding TourReviews}" BorderThickness="0" SelectedItem="{Binding SelectedTourReview, Mode=TwoWay}" Margin="10" Grid.Row="2" HorizontalContentAlignment="Stretch" Background="#F4F5FB">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Gray" BorderThickness="0,1,0,1" Padding="10" HorizontalAlignment="Stretch" Style="{StaticResource ReviewBorderStyle}">
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <!-- Full name and tour name -->
+                            <TextBlock>
+                                <Run Text="{Binding TourAttendance.Tourist.FirstName}" FontWeight="Bold" FontSize="14" />
+                                <Run Text=" " />
+                                <Run Text="{Binding TourAttendance.Tourist.LastName}" FontWeight="Bold" FontSize="14" />
+                                <Run Text=" (" />
+                                <Run Text="{Binding TourReservation.Tour.Name}" FontSize="14" />
+                                <Run Text=")" />
+                            </TextBlock>
+
+                            <!-- Description (Comment) with border -->
+                            <Border BorderBrush="Black" BorderThickness="1" Margin="0,5,0,10">
+                                <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" Padding="5" Background="LightGray" />
+                            </Border>
+
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Left side with labels and scores -->
+                                <TextBlock Text="Guide Knowledge:" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
+                                <TextBlock Text="{Binding Knowledge}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" />
+
+                                <TextBlock Text="Guide Language:" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" />
+                                <TextBlock Text="{Binding Language}" Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" HorizontalAlignment="Right" />
+
+                                <TextBlock Text="Tour Interestingness:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Margin="0,5,0,0" />
+                                <TextBlock Text="{Binding Interestingness}" Grid.Row="2" Grid.Column="0" Margin="0,5,0,0" HorizontalAlignment="Right" />
+
+                                <!-- Right side with joined checkpoint and report button -->
+                                <TextBlock Text="Joined Checkpoint:" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding TourAttendance.CheckpointJoined.Name}" Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                            </Grid>
+
+                            <Button Content="Report"
+                                Command="{Binding DataContext.ReportCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                CommandParameter="{Binding}"
+                                Margin="5"
+                                Background="IndianRed"
+                                Width="75"
+                                Height="30"
+                                HorizontalAlignment="Right">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                                CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

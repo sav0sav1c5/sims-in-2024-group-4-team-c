@@ -1,0 +1,43 @@
+﻿<Window x:Class="BookingApp.View.GuideView.GuideWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View.GuideView"
+        xmlns:converters="clr-namespace:BookingApp.WPF.Converter"
+        mc:Ignorable="d"
+        Title="GuideWindow" Height="750" Width="430">
+    <Window.Resources>
+        <converters:ImagePathConverter x:Key="ImagePathsToImageSourceConverter"/>
+    </Window.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" Background="White">
+            <!-- Create Tour button with icon -->
+            <Button Command="{Binding CreateTourCommand}" Background="#F4F5FB" DockPanel.Dock="Left" Width="130" Height="100" FontWeight="Bold" BorderBrush="#708090" BorderThickness="0,3,0,0">
+                <StackPanel>
+                    <Image Source="/Resources/Images/plus.png" Width="35" Height="50"/>
+                    <TextBlock Text="Create Tour" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <!-- Profile button with icon -->
+            <Button Command="{Binding ProfileCommand}" Background="#F4F5FB" DockPanel.Dock="Right" Width="130" FontWeight="Bold" BorderBrush="#708090" BorderThickness="0,3,0,0">
+                <StackPanel>
+                    <Image Source="/Resources/Images/profile.png" Width="70" Height="60"/>
+                    <TextBlock Text="Profile" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Tours button with icon using pack URI -->
+            <Button Command="{Binding HomeCommand}" Background="#F4F5FB" DockPanel.Dock="Bottom" FontWeight="Bold" BorderBrush="#708090" BorderThickness="0,3,0,0">
+                <StackPanel>
+                    <Image Source="/Resources/Images/flag.png" Width="70" Height="60"/>
+                    <TextBlock Text="Tours" FontSize="15" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </DockPanel>
+
+        <DockPanel DockPanel.Dock="Top">
+            <Frame x:Name="GuideContentFrame" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
+    </DockPanel>
+</Window>

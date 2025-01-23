@@ -1,0 +1,115 @@
+﻿<Page x:Class="BookingApp.View.GuestMyProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.GuestView"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="GuestMyProfile">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="LabelTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="18" />
+            <!--<Setter Property="FontWeight" Value="Bold" />-->
+            <!--<Setter Property="Margin" Value="0,0,30,0" />-->
+        </Style>
+        <Style TargetType="TextBlock" x:Key="FieldTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
+
+
+    <Grid Background="white" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>-->
+
+
+
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="My profile:" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" />
+            
+            <!--TODO: create custom profile pictures-->
+            <!--<Image Source="{Binding Path=}" Width="400" Height="300"/>-->
+            <Image Source="/Resources/Images/profile.png" Width="400" Height="300" />
+
+            
+            <WrapPanel HorizontalAlignment="Center">
+                <!--<TextBlock Text="Username:" Style="{StaticResource LabelTextBlock}"/>-->
+                <TextBlock Text="{Binding Path=LoggedGuest.Username, Mode=OneWay}"
+                           Style="{StaticResource FieldTextBlock}"
+                           FontWeight="Bold" FontSize="32" HorizontalAlignment="Center"
+                           />
+                <Image Source="/Resources/Images/blackStar.png" Width="40" Height="40"
+                       Visibility="{Binding SuperGuestIconVisibility}"/>
+                <Image Source="/Resources/Images/QuestionMark.png" Width="25" Height="25" 
+                       Visibility="{Binding SuperGuestIconVisibility}"/>
+
+            </WrapPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+            
+                <!--<WrapPanel >-->
+                <TextBlock Text="First name:" Style="{StaticResource LabelTextBlock}" 
+                           Grid.Row="0" Grid.Column="0"
+                           />
+                <TextBlock  Text="{Binding Path=LoggedGuest.FirstName, Mode=OneWay}" Style="{StaticResource FieldTextBlock}"
+                            Grid.Row="0" Grid.Column="1"
+                            />
+                <!--</WrapPanel>-->
+                <!--<WrapPanel >-->
+                <TextBlock Text="Last name:" Style="{StaticResource LabelTextBlock}" 
+                           Grid.Row="1" Grid.Column="0"
+                           />
+                <TextBlock  Text="{Binding Path=LoggedGuest.LastName, Mode=OneWay}" Style="{StaticResource FieldTextBlock}"
+                            Grid.Row="1" Grid.Column="1"
+                            />
+                <!--</WrapPanel>-->
+                <!--<WrapPanel >-->
+                <TextBlock Text="Email address:" Style="{StaticResource LabelTextBlock}" 
+                            Grid.Row="2" Grid.Column="0"
+                            />
+                <TextBlock  Text="{Binding Path=LoggedGuest.Email, Mode=OneWay}" Style="{StaticResource FieldTextBlock}"
+                            Grid.Row="2" Grid.Column="1"
+                            />
+                
+                <TextBlock Text="Discound coupons count:" Style="{StaticResource LabelTextBlock}" 
+                            Grid.Row="3" Grid.Column="0"
+                            Visibility="{Binding SuperGuestIconVisibility}"
+                            />
+                <TextBlock  Text="{Binding Path=LoggedGuest.SuperGuestDiscountCouponCount, Mode=OneWay}" Style="{StaticResource FieldTextBlock}"
+                            Grid.Row="3" Grid.Column="1"
+                            Visibility="{Binding SuperGuestIconVisibility}"
+                            />
+                <!--</WrapPanel>-->
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

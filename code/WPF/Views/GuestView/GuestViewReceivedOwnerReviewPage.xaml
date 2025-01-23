@@ -1,0 +1,273 @@
+﻿<Page x:Class="BookingApp.WPF.Views.GuestView.GuestViewReceivedOwnerReviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.Views.GuestView"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="GuestViewReceivedOwnerReviewPage">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="LabelTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="5,0,0,5" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="FieldTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,0,5" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="BorderHeaderTextBlock">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="FieldTextBox">
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="Border" >
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="5,15,10,0" />
+        </Style>
+        <Style TargetType="Button" >
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="10,10,10,10" />
+        </Style>
+        <Style TargetType="RadioButton" >
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,10,5,10" />
+        </Style>
+        <Style TargetType="Button" x:Key="ImageButton" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <!--Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"-->
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TitleTextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock FontWeight="Bold" FontSize="32" HorizontalAlignment="Center" Text="Received review" 
+                   Grid.Row="0"/>
+
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+                   Style="{StaticResource BorderHeaderTextBlock}"
+                   Text="Accomodation info"  FontSize="10" HorizontalAlignment="Left" Margin="10,25,0,0" 
+                   />
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,5,0">
+
+            <Grid  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <WrapPanel  Grid.Column="0" Margin="10,10,10,10">
+
+                    <Button Width="50" Height="50" Style="{StaticResource ImageButton}"
+                            Command="{Binding ShowPreviousAccommodationImageCMD}" 
+                            CommandParameter="{Binding ElementName=AccommodationImageGallery}">
+                        <Image Source="/Resources/Images/ArrowLeft.png" Width="50" Height="50"/>
+                    </Button>
+                    <Image x:Name="AccommodationImageGallery" 
+                           Width="200" Height="180"/>
+                    <Button Width="50" Height="50" Style="{StaticResource ImageButton}"
+                        Command="{Binding ShowNextAccommodationImageCMD}" 
+                        CommandParameter="{Binding ElementName=AccommodationImageGallery}">
+                        <Image Source="/Resources/Images/ArrowRight.png" Width="50" Height="50"/>
+                    </Button>
+                </WrapPanel>
+
+
+                <Grid Grid.Column="1" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Name:"  Style="{StaticResource LabelTextBlock}" 
+                           Grid.Column="0" Grid.Row="0"
+                               Margin="5,5,5,5"
+                           />
+                    <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                           Style="{StaticResource FieldTextBlock}"
+                           Grid.Column="1" Grid.Row="0"
+                               Margin="5,5,5,5"
+                           />
+
+                    <TextBlock Text="Country:" Style="{StaticResource LabelTextBlock}" 
+                           Grid.Column="0" Grid.Row="1"
+                               Margin="5,5,5,5"
+                           />
+                    <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationCountry, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                           Style="{StaticResource FieldTextBlock}"
+                           Grid.Column="1" Grid.Row="1"
+                               Margin="5,5,5,5"
+                           />
+
+                    <TextBlock Text="City:" Style="{StaticResource LabelTextBlock}" 
+                           Grid.Column="0" Grid.Row="2"
+                               Margin="5,5,5,5"
+                           />
+                    <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationCity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                           Style="{StaticResource FieldTextBlock}"
+                            Grid.Column="1" Grid.Row="2"
+                               Margin="5,5,5,5"
+                           />
+
+                    <TextBlock Text="Owner:" Style="{StaticResource LabelTextBlock}" 
+                           Grid.Column="0" Grid.Row="3"
+                               Margin="5,5,5,5"
+                           />
+                    <TextBlock Text="{Binding AccommodationReservationReviewDTO.OwnerName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                           Style="{StaticResource FieldTextBlock}" 
+                           Grid.Column="1" Grid.Row="3"
+                               Margin="5,5,5,5"
+                           />
+
+                </Grid>
+
+            </Grid>
+        </Border>
+
+        <TextBlock Text="Reservation info" Style="{StaticResource BorderHeaderTextBlock}" Grid.Row="2" />
+        <Border Grid.Row="2" Margin="5,15,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Check-in-date:" Style="{StaticResource LabelTextBlock}" 
+                       Grid.Row="0" Grid.Column="0" 
+                       Margin="5,5,5,5"/>
+                <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationReservationStartDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                       Style="{StaticResource FieldTextBlock}" 
+                       Grid.Row="0" Grid.Column="1" 
+                       Margin="5,5,5,5"/>
+
+                <TextBlock Text="Check-out-date:" Style="{StaticResource LabelTextBlock}" 
+                        Grid.Row="0" Grid.Column="2" 
+                        Margin="5,5,5,5"/>
+                <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationReservationEndDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Style="{StaticResource FieldTextBlock}" 
+                        Grid.Row="0" Grid.Column="3" 
+                        Margin="5,5,5,5"/>
+
+                <TextBlock Text="Number of guests:" Style="{StaticResource LabelTextBlock}" 
+                        Grid.Row="1" Grid.Column="0" 
+                        Margin="5,5,5,5"/>
+                <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationReservationNumberOfGuests, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Style="{StaticResource FieldTextBlock}" 
+                        Grid.Row="1" Grid.Column="1" Margin="5,5,5,5"/>
+
+
+                <TextBlock Text="Stay length in days:" Style="{StaticResource LabelTextBlock}" 
+                        Grid.Row="1" Grid.Column="2" 
+                        Margin="5,5,5,5"/>
+                <TextBlock Text="{Binding AccommodationReservationReviewDTO.AccommodationReservationStayLength, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                        Style="{StaticResource FieldTextBlock}" 
+                        Grid.Row="1" Grid.Column="3" 
+                        Margin="5,5,5,5"/>
+            </Grid>
+        </Border>
+
+        
+        
+        
+        
+        <TextBlock Text="Rating" Style="{StaticResource BorderHeaderTextBlock}" Grid.Row="3" />
+        <Border Grid.Row="3" Margin="5,15,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Margin="30,0,0,0" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Very bad"  HorizontalAlignment="Left"/>
+                <TextBlock Margin="0,0,0,0" Grid.Row="0" Grid.Column="3" Text="Average" HorizontalAlignment="Center"/>
+                <TextBlock Margin="0,0,30,0" Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="Excellent" HorizontalAlignment="Right"/>
+
+                <TextBlock Margin="5,10,5,10" Grid.Row="1" Grid.Column="0" Text="Cleanliness:" HorizontalAlignment="Left" />
+                <TextBlock Margin="5,10,5,10" Grid.Row="2" Grid.Column="0" Text="Discipline:"  HorizontalAlignment="Left"/>
+
+
+
+                <RadioButton Name="CleanlinessRadioButton1"  GroupName="CleanlinessRadioButtons" Grid.Row="1" Grid.Column="1" IsChecked="{Binding CleanlinessRatings[0], Mode=TwoWay}"/>
+                <RadioButton Name="CleanlinessRadioButton2"  GroupName="CleanlinessRadioButtons" Grid.Row="1" Grid.Column="2" IsChecked="{Binding CleanlinessRatings[1], Mode=TwoWay}"/>
+                <RadioButton Name="CleanlinessRadioButton3"  GroupName="CleanlinessRadioButtons" Grid.Row="1" Grid.Column="3" IsChecked="{Binding CleanlinessRatings[2], Mode=TwoWay}"/>
+                <RadioButton Name="CleanlinessRadioButton4"  GroupName="CleanlinessRadioButtons" Grid.Row="1" Grid.Column="4" IsChecked="{Binding CleanlinessRatings[3], Mode=TwoWay}"/>
+                <RadioButton Name="CleanlinessRadioButton5"  GroupName="CleanlinessRadioButtons" Grid.Row="1" Grid.Column="5" IsChecked="{Binding CleanlinessRatings[4], Mode=TwoWay}"/>
+
+
+                <RadioButton Name="DisciplineRadioButton1"  GroupName="DisciplineRadioButtons" Grid.Row="2" Grid.Column="1" IsChecked="{Binding DisciplineRatings[0], Mode=TwoWay}"/>
+                <RadioButton Name="DisciplineRadioButton2"  GroupName="DisciplineRadioButtons" Grid.Row="2" Grid.Column="2" IsChecked="{Binding DisciplineRatings[1], Mode=TwoWay}"/>
+                <RadioButton Name="DisciplineRadioButton3"  GroupName="DisciplineRadioButtons" Grid.Row="2" Grid.Column="3" IsChecked="{Binding DisciplineRatings[2], Mode=TwoWay}"/>
+                <RadioButton Name="DisciplineRadioButton4"  GroupName="DisciplineRadioButtons" Grid.Row="2" Grid.Column="4" IsChecked="{Binding DisciplineRatings[3], Mode=TwoWay}"/>
+                <RadioButton Name="DisciplineRadioButton5"  GroupName="DisciplineRadioButtons" Grid.Row="2" Grid.Column="5" IsChecked="{Binding DisciplineRatings[4], Mode=TwoWay}"/>
+
+            </Grid>
+        </Border>
+
+
+        <TextBlock Grid.Row="4" Text="Owner comment:" Style="{StaticResource BorderHeaderTextBlock}"/>
+
+        <TextBox Grid.Row="4" Margin="5,15,10,0" Text="{Binding Path=AccommodationReservationReviewDTO.Comment, Mode=OneWay}" IsReadOnly="True" Height="250" FontSize="16" BorderThickness="2" BorderBrush="Black"/>
+
+
+
+    </Grid>
+</Page>

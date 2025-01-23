@@ -1,0 +1,155 @@
+﻿<Page x:Class="BookingApp.WPF.Views.TouristView.ComplexTourRequestDetailsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.Views.TouristView"
+      mc:Ignorable="d">
+    <Grid  Background="#FFC8B878">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Prva kolona -->
+        <Grid Grid.Column="0" Background="#FF645A32">
+            <TextBlock Text="BookingApp" FontSize="30" Margin="10,10,10,397" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <Button Content="Tours" Background="#FFFFF5CD" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="Black" Width="180" Height="40" FontSize="18" FontWeight="Bold" Command="{Binding ToursCommand}" VerticalAlignment="Center" Margin="0,0,0,225">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5,40,40,5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Requests" Background="#FFFFF5CD" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="Black" Width="180" Height="40" FontSize="18" FontWeight="Bold" Command="{Binding RequestsCommand}" VerticalAlignment="Center" Margin="0,0,0,75">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5,40,40,5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Statistics" Background="#FFFFF5CD" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="Black" Width="180" Height="40" FontSize="18" FontWeight="Bold" Command="{Binding StatisticsCommand}" VerticalAlignment="Center" Margin="0,75,0,0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5,40,40,5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Rate Tours" Background="#FFFFF5CD" HorizontalAlignment="Center" BorderThickness="1" BorderBrush="Black" Width="180" Height="40" FontSize="18" FontWeight="Bold" Command="{Binding RateToursCommand}" VerticalAlignment="Center" Margin="0,225,0,0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5,40,40,5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Background="#FFFFF5CD" Width="140" BorderThickness="1" BorderBrush="Black" Margin="0,520,0,20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="45" FontSize="18" FontWeight="Bold" Command="{Binding LogOutCommand}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="C:\Users\ws232\OneDrive\Documentos\ProjectSIMS\sims-in-2024-group-4-team-c\Resources\Images\logoutbutton.png" Height="30"></Image>
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="Log Out"/>
+                </StackPanel>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <!-- Druga kolona -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Red sa nazivom kartice i dugmetom za profil -->
+            <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                <TextBlock Text="Requests" TextAlignment="Left" FontSize="20" VerticalAlignment="Bottom" Margin="30,0,0,12" FontWeight="Bold"></TextBlock>
+                <Button Background="#FFFFF5CD" HorizontalAlignment="Right" Margin="0,0,30,0" Width="30"  BorderThickness="1" BorderBrush="Black" Height="30" Command="{Binding TutorialCommand}">
+                    <Image Source="C:\Users\ws232\OneDrive\Documentos\ProjectSIMS\sims-in-2024-group-4-team-c\Resources\Images\tutorial_button.png" Width="20" Height="20"/>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Background="#FFFFF5CD" HorizontalAlignment="Right" Margin="0,0,80,0" Width="30" BorderThickness="1" BorderBrush="Black" Height="30" Command="{Binding NotificationsCommand}">
+                    <Image Source="C:\Users\ws232\OneDrive\Documentos\ProjectSIMS\sims-in-2024-group-4-team-c\Resources\Images\notification_button.png" Width="20" Height="20"/>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Background="#FFFFF5CD" HorizontalAlignment="Right" Margin="0,0,130,0" Width="180"  BorderThickness="1" BorderBrush="Black" Height="40" FontSize="10" Command="{Binding ProfileCommand}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Image Source="/Resources/Images/profile.png" Width="35" Height="35" VerticalAlignment="Center" Margin="-20,0,5,0"/>
+                        <TextBlock Text="{Binding ProfileButtonContent}" VerticalAlignment="Center" FontSize="13"/>
+                    </StackPanel>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Line X1="20" Y1="0" X2="1010" Y2="0" Stroke="Black" StrokeThickness="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Panel sa detaljima ture -->
+                <Grid Grid.Row="0" Margin="50,50,0,20">
+                    <ScrollViewer>
+                        <Border CornerRadius="10" Background="#FFFFF5CD" Margin="0,0,50,0">
+                            <StackPanel>
+                                <Button Content="Back to home" Command="{Binding BackToHomeCommand}" Background="#FFC8B878" Height="20" Width="100" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" Margin="50,30,0,10">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="20,5,5,20"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Height="50" FontSize="35" TextAlignment="Left" FontWeight="Bold" Margin="50,0,0,0">
+                                        <Run Text="Complex tour details" />
+                                        <Run Text="{Binding ComplexTourStatus}" Foreground="Red" />
+                                    </TextBlock>
+                                </StackPanel>
+                                <!-- ListBox za prikaz delova složene ture -->
+                                <StackPanel Margin="50,20,50,0" Background="White">
+                                    <ItemsControl ItemsSource="{Binding ComplexTourParts}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="300" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="150" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding TourName}" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom" Margin="20,5,0,0" Width="Auto" Grid.Column="0"/>
+                                                    <TextBlock Text="{Binding Country}" FontSize="16" VerticalAlignment="Bottom" Margin="10,0,0,0" Width="Auto" Grid.Column="1"/>
+                                                    <TextBlock Text="{Binding City}" FontSize="16" VerticalAlignment="Bottom" Margin="10,0,0,0" Width="Auto" Grid.Column="2"/>
+                                                    <Button Content="Details" Command="{Binding DataContext.ShowDetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Background="#FFFFF5CD" Margin="10,5,0,0" Height="25" FontSize="14" FontWeight="Bold" Width="80" BorderBrush="Black" BorderThickness="1" Grid.Column="3">
+                                                        <Button.Resources>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="CornerRadius" Value="5"/>
+                                                            </Style>
+                                                        </Button.Resources>
+                                                    </Button>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
